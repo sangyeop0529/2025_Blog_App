@@ -352,7 +352,7 @@ input:checked + .carousel__slide-container .nav label {
 }
 
 .form input {
-  height: 30px;
+  height: 40px;
   padding: 10px 10px;
   font-size: 16px;
   border-radius: 0.3rem;
@@ -401,4 +401,26 @@ input:checked + .carousel__slide-container .nav label {
 .form .form__btn--submit:hover,
 .form .form__btn--submit:focus {
   background-color: #1945a4;
+}
+
+/* login form */
+.form--lg {
+  min-height: 70vh;
+  margin-top: 10vh;
+}
+
+.form__title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.form__link {
+  margin-left: 10px;
+  color: gray;
+}
+
+.form__link:hover,
+.form__link:focus {
+  color: black;
 }

@@ -1,5 +1,14 @@
+import Footer from "components/Footer";
+import Header from "components/Header";
+import LoginForm from "components/LoginForm";
+
 const LoginPage = () => {
-  return <div>LoginPage</div>;
+  return (
+    <>
+      <Header />
+      <LoginForm />
+    </>
+  );
 };
 
 export default LoginPage;
