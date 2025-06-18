@@ -86,6 +86,9 @@ const LoginForm = () => {
           회원가입하기
         </Link>
       </div>
+      <div className="test__user">
+        * 테스트용 계정 : <span>test@test.com / password</span>
+      </div>
       <div className="form__block">
         <input
           type="submit"
