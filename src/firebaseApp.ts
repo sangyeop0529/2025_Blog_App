@@ -1,4 +1,7 @@
 import { initializeApp } from "firebase/app";
+import type { FirebaseApp } from "firebase/app"; // type import로 변경
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -9,6 +12,9 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-const firebase = initializeApp(firebaseConfig);
+export const app: FirebaseApp = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 
-export default firebase;
+export const db = getFirestore(app);
+
+export default app;

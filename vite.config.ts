@@ -9,6 +9,7 @@ export default defineConfig({
     alias: {
       pages: path.resolve(__dirname, "./src/pages"),
       components: path.resolve(__dirname, "./src/components"),
+      context: path.resolve(__dirname, "./src/context"),
       firebaseApp: path.resolve(__dirname, "src/firebaseApp"),
     },
   },

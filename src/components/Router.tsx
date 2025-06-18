@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { useState } from "react";
+
 import Home from "pages/home";
 import PostList from "pages/posts";
 import PostNew from "pages/posts/new";
@@ -9,10 +9,11 @@ import LoginPage from "pages/login";
 import SignupPage from "pages/signup";
 import PostPage from "pages/posts/detail";
 
-const Router = () => {
-  // firebase Auth가 인증되었으면 true로 변경해주는 로직 추가
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+interface RouterProps {
+  isAuthenticated: boolean;
+}
 
+const Router = ({ isAuthenticated }: RouterProps) => {
   return (
     <Routes>
       {isAuthenticated ? (
@@ -23,8 +24,6 @@ const Router = () => {
           <Route path="/posts/new" element={<PostNew />} />
           <Route path="/posts/edit/:id" element={<PostEdit />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </>
       ) : (
