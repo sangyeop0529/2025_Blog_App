@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Router from "components/Router";
+import { useState, useEffect, useContext } from "react";
+import { app } from "firebaseApp";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Loader from "components/Loader";
+import ThemeContext from "context/ThemeContext";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const context = useContext(ThemeContext);
+
+  const auth = getAuth(app);
+
+  // auto를 체크하기 전에 (initialize 전)에는 loader를 띄워주는 용도
+  const [init, setInit] = useState<boolean>(false);
+
+  // auth의 currentUser가 있으면 authenticated로 변경
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
+    !!auth?.currentUser
+  );
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+      setInit(true);
+    });
+  }, [auth]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className={context.theme === "light" ? "white" : "dark"}>
+      <ToastContainer />
+      {init ? <Router isAuthenticated={isAuthenticated} /> : <Loader />}
+    </div>
+  );
 }
 
-export default App
+export default App;
