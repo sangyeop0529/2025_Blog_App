@@ -472,6 +472,14 @@ input:checked + .carousel__slide-container .nav label {
   -moz-appearance: menulist;
 }
 
+.test__user {
+  color: #ff6a71;
+}
+
+.test__user span {
+  text-decoration: underline;
+}
+
 /* loader */
 .loader {
   width: 48px;
